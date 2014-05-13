@@ -1,8 +1,10 @@
 # pkgcount
 
-Report number of duplicate packages are installed.
+Easily see how many packages, which versions and how many copies of each package are installed in your node_modules hierarchy.
 
 ## Examples
+
+### List All Packages
 
 #### timoxley/pkgcount
 
@@ -32,7 +34,7 @@ npmd-config@1.0.11     1
 npmd-tree@3.3.4        1
 optimist@0.6.1         1
 osenv@0.0.3            1
-pkg-count@0.0.0        1
+pkgcount@0.0.0         1
 pull-core@1.0.0        1
 pull-fs@1.1.3          1
 pull-paramap@1.0.5     1
@@ -92,7 +94,9 @@ SUMMARY
 24  Total Packages
 ```
 
-### substack/node-browserify
+### List Only Duplicates
+
+#### substack/node-browserify
 
 ```
 > pkgcount --duplicates
@@ -118,13 +122,15 @@ traverse@0.6.6                     3
 wordwrap@0.0.2                     2
 
 SUMMARY
-18  Unique Packages
 21  Max. Nesting Depth
 31  Duplicate Packages
-49  Total Packages
+136 Unique Packages
+167 Total Packages
 ```
 
-### mikeal/request
+### List Only Summary
+
+#### mikeal/request
 
 ```
 > pkgcount --summary
@@ -135,8 +141,12 @@ SUMMARY
 24  Total Packages
 ```
 
+### JSON Output & No Color Highlighting
+
+All commands accept these flags.
+
 ```
-> pkg-count --summary --json --no-color
+> pkgcount --summary --json --no-color
 
 {
   "unique": 24,
@@ -146,7 +156,9 @@ SUMMARY
 }
 ```
 
-### chjj/marked
+### List Paths to Packages
+
+#### chjj/marked
 
 ```
 > pkgcount --paths
@@ -163,6 +175,23 @@ SUMMARY
 0   Duplicate Packages
 3   Max. Nesting Depth
 6   Total Packages
+```
+
+### Limit Traversal Depth
+
+```
+> pkgcount --depth=1
+
+NAME             COUNT
+markdown@0.5.0   1
+marked@0.3.2     1
+robotskirt@2.7.1 1
+showdown@0.3.1   1
+
+SUMMARY
+0   Duplicate Packages
+1   Max. Nesting Depth
+4   Total Packages
 ```
 
 ## License

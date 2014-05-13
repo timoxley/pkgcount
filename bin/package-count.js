@@ -34,10 +34,10 @@ pkgcount(dir, {depth: program.depth}, function(err, allPaths) {
   var outputData = paths
 
   var summary = {
-    unique: unique(paths),
-    total: total(paths),
-    duplicate: duplicate(paths),
-    depth: depth(dir, paths)
+    unique: unique(allPaths),
+    total: total(allPaths),
+    duplicate: duplicate(allPaths),
+    depth: depth(dir, allPaths)
   }
 
   if (program.json) {
