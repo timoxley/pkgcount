@@ -1,6 +1,6 @@
 {
   "name": "pkgcount",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Report number of duplicate packages are installed.",
   "main": "index.js",
   "bin": "bin/package-count.js",
