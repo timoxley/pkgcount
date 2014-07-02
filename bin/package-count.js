@@ -13,13 +13,13 @@ var pkgcount = require('../')
 
 program
   .version(require('../package.json').version)
-  .option('--min [count]', 'Only list packages duplicated at least this number of times')
-  .option('--duplicates', 'Only list packages appearing more than once')
-  .option('--json', 'Display json output')
-  .option('--no-color', 'Display uncolored output.')
-  .option('--paths', 'List paths to each package instead of counts')
-  .option('--summary', 'Only display summary')
-  .option('--depth [depth]', 'Limit traversal depth')
+  .option('--min [count]', 'only list packages duplicated at least this number of times')
+  .option('--duplicates', 'only list packages appearing more than once')
+  .option('--json', 'display json output')
+  .option('--no-color', 'display uncolored output.')
+  .option('--paths', 'list paths to each package instead of counts')
+  .option('--summary', 'only display summary')
+  .option('--depth [depth]', 'limit traversal depth')
   .parse(process.argv);
 
 var names = program.args

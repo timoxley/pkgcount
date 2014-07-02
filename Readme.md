@@ -2,6 +2,31 @@
 
 Easily see how many packages, which versions and how many copies of each package are installed in your node_modules hierarchy.
 
+## Installation
+
+```
+npm install -g pkgcount
+```
+
+## Usage
+
+```
+> pkgcount --help
+Usage: pkgcount [options]
+
+Options:
+
+  -h, --help       output usage information
+  -V, --version    output the version number
+  --min [count]    only list packages duplicated at least this number of times
+  --duplicates     only list packages appearing more than once
+  --json           display json output
+  --no-color       display uncolored output.
+  --paths          list paths to each package instead of counts
+  --summary        only display summary
+  --depth [depth]  limit traversal depth
+```
+
 ## Examples
 
 ### List All Packages
@@ -157,6 +182,8 @@ All commands accept these flags.
 ```
 
 ### List Paths to Packages
+
+Similar to npm ls --parseable.
 
 #### chjj/marked
 
