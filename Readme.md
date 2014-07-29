@@ -21,11 +21,15 @@ Options:
   --min [count]    only list packages duplicated at least this number of times
   --duplicates     only list packages appearing more than once
   --json           display json output
-  --no-color       display uncolored output.
+  --no-color       display uncolored output. Colors indicate packages with high levels of duplication
   --paths          list paths to each package instead of counts
   --summary        only display summary
   --depth [depth]  limit traversal depth
 ```
+
+By default, `pkgcount` uses coloured output as a simple visual aide to
+help identify packages with high levels of duplication. Packages are
+shaded from yellow->red based on the number of duplicates.
 
 ## Examples
 

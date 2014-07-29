@@ -16,7 +16,7 @@ program
   .option('--min [count]', 'only list packages duplicated at least this number of times')
   .option('--duplicates', 'only list packages appearing more than once')
   .option('--json', 'display json output')
-  .option('--no-color', 'display uncolored output.')
+  .option('--no-color', 'display uncolored output. Colors indicate packages with high levels of duplication')
   .option('--paths', 'list paths to each package instead of counts')
   .option('--summary', 'only display summary')
   .option('--depth [depth]', 'limit traversal depth')
