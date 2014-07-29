@@ -20,13 +20,15 @@ program
   .option('--paths', 'list paths to each package instead of counts')
   .option('--summary', 'only display summary')
   .option('--depth [depth]', 'limit traversal depth')
+  .option('-s, --sort-duplicates', 'Sort results by number of duplicates')
   .parse(process.argv);
 
 var names = program.args
 var dir = process.cwd()
 if (program.duplicates) program.min = program.min || 2
+if (program.sortDuplicates) program.sortKey = 'duplicates'
 
-pkgcount(dir, {depth: program.depth}, function(err, allPaths) {
+pkgcount(dir, {depth: program.depth, sortKey: program.sortKey}, function(err, allPaths) {
   console.log("")
   var paths = filterPackagesNames(allPaths, names)
   paths = filterPackagesCount(paths, program.min)

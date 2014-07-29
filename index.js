@@ -5,7 +5,8 @@ var relative = require('path').relative
 var defaults = require('defaults')
 
 var DEFAULTS = {
-  depth: Infinity
+  depth: Infinity,
+  sortKey: 'name'
 }
 
 module.exports = function(dir, options, fn) {
@@ -29,7 +30,12 @@ function pkgcount(dir, options, fn) {
     cb()
   }}, function (err, tree) {
     if (err) return fn(err)
-    fn(null, sortKeys(paths))
+    console.log('options.sortKey', options.sortKey)
+    return (
+      options.sortKey == 'duplicates'
+      ? fn(null, sortValues(paths))
+      : fn(null, sortKeys(paths))
+    )
   })
 }
 
@@ -41,6 +47,16 @@ function depth(dir, path) {
 
 function sortKeys(obj) {
   var keys = Object.keys(obj).sort()
+  return keys.reduce(function(result, key) {
+    result[key] = obj[key]
+    return result
+  }, {})
+}
+
+function sortValues(obj) {
+  var keys = Object.keys(obj).sort(function(a, b) {
+    return obj[a].length - obj[b].length
+  })
   return keys.reduce(function(result, key) {
     result[key] = obj[key]
     return result
