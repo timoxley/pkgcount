@@ -24,7 +24,7 @@ program
 
 var names = program.args
 var dir = process.cwd()
-if (program.duplicates) program.min = program.min || 1
+if (program.duplicates) program.min = program.min || 2
 
 pkgcount(dir, {depth: program.depth}, function(err, allPaths) {
   console.log("")
