@@ -30,7 +30,6 @@ function pkgcount(dir, options, fn) {
     cb()
   }}, function (err, tree) {
     if (err) return fn(err)
-    console.log('options.sortKey', options.sortKey)
     return (
       options.sortKey == 'duplicates'
       ? fn(null, sortValues(paths))
