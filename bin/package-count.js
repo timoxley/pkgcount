@@ -13,8 +13,8 @@ var pkgcount = require('../')
 
 program
   .version(require('../package.json').version)
-  .option('--min [count]', 'only list packages duplicated at least this number of times')
-  .option('--duplicates', 'only list packages appearing more than once')
+  .option('-m, --min [count]', 'only list packages duplicated at least this number of times')
+  .option('-d, --duplicates', 'only list packages appearing more than once')
   .option('--json', 'display json output')
   .option('--no-color', 'display uncolored output. Colors indicate packages with high levels of duplication')
   .option('--paths', 'list paths to each package instead of counts')
