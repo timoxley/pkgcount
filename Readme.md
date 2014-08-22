@@ -12,19 +12,20 @@ npm install -g pkgcount
 
 ```
 > pkgcount --help
-Usage: pkgcount [options]
+  Usage: pkgcount [options]
 
-Options:
+  Options:
 
-  -h, --help       output usage information
-  -V, --version    output the version number
-  --min [count]    only list packages duplicated at least this number of times
-  --duplicates     only list packages appearing more than once
-  --json           display json output
-  --no-color       display uncolored output. Colors indicate packages with high levels of duplication
-  --paths          list paths to each package instead of counts
-  --summary        only display summary
-  --depth [depth]  limit traversal depth
+    -h, --help             output usage information
+    -V, --version          output the version number
+    -m, --min [count]      only list packages duplicated at least this number of times
+    -d, --duplicates       only list packages appearing more than once
+    --json                 display json output
+    --no-color             display uncolored output. Colors indicate packages with high levels of duplication
+    --paths                list paths to each package instead of counts
+    --summary              only display summary
+    --depth [depth]        limit traversal depth
+    -s, --sort-duplicates  Sort results by number of duplicates
 ```
 
 By default, `pkgcount` uses coloured output as a simple visual aide to
