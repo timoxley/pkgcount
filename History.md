@@ -1,4 +1,9 @@
 
+1.3.0 / 2014-12-07
+==================
+
+ * Support local dependencies and deep nesting.
+
 1.2.0 / 2014-08-22
 ==================
 
