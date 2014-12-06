@@ -1,3 +1,8 @@
+1.3.1 / 2014-12-07
+==================
+
+ * Remove stupid unused requires.
+ * Add MVP test script.
 
 1.3.0 / 2014-12-07
 ==================
