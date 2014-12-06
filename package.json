@@ -23,7 +23,8 @@
     "columnify": "^1.1.0",
     "commander": "^2.2.0",
     "defaults": "^1.0.0",
-    "npmd-tree": "^3.3.4"
+    "map-limit": "0.0.1",
+    "read-installed": "^3.1.3"
   },
   "devDependencies": {},
   "repository": {
