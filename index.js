@@ -1,7 +1,6 @@
 "use strict"
 
 var tree = require('read-installed')
-var traverse = require('traverse')
 var relative = require('path').relative
 var defaults = require('defaults')
 var map = require('map-limit')

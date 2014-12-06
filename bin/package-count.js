@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var tree = require('npmd-tree').tree
 var columnify = require('columnify')
 var program = require('commander')
 
