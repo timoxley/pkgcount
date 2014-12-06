@@ -7,7 +7,8 @@
     "pkgcount": "bin/package-count.js"
   },
   "scripts": {
-    "test": "echo 'Yeah it probably works.'"
+    "pretest": "npm prune",
+    "test": "./bin/package-count.js"
   },
   "author": "Tim Oxley",
   "license": "MIT",
