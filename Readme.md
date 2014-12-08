@@ -44,15 +44,15 @@ shaded from yellow->red based on the number of duplicates.
 > pkgcount
 
 PACKAGE                              #
-pretty-bytes@1.0.1                   1
-pkgcount@1.3.1                       1
+pkgcount@2.0.0                       1
+util-extend@1.0.1                    1
 js-tokenizer@1.3.1                   1
 colors@0.6.2                         1
 chalk@0.5.1                          1
 ansi-styles@1.1.0                    1
 escape-string-regexp@1.0.2           1
 has-ansi@0.1.0                       1
-util-extend@1.0.1                    1
+slide@1.1.6                          1
 strip-ansi@0.3.0                     1
 supports-color@0.2.0                 1
 columnify@1.3.2                      1
@@ -64,10 +64,11 @@ clone@0.1.15                         1
 commander@2.2.0                      1
 du@0.1.0                             1
 async@0.1.22                         1
+json-stringify-safe@5.0.0            1
 map-limit@0.0.1                      1
-slide@1.1.6                          1
 graceful-fs@3.0.5                    1
 ansi-highlight@1.0.2                 1
+pretty-bytes@1.0.1                   1
 get-stdin@1.0.0                      1
 read-installed@3.1.3                 1
 debuglog@1.0.1                       1
@@ -87,16 +88,15 @@ semver@4.1.0                         1
 readdir-scoped-modules@1.0.1         1
 dezalgo@1.0.1                        1
 asap@1.0.0                           1
-bytes@1.0.0                          1
 ansi-regex@0.2.1                     2
 once@1.3.1                           3
 wrappy@1.0.1                         5
 
-           SUMMARY
-    Total Packages 54
-   Unique Packages 47  87%
-Duplicate Packages 7   13%
-Max. Nesting Depth 21
+PKGCOUNT SUMMARY
+Total Pkgs      54
+Unique Pkgs     47   87%
+Duplicate Pkgs  7    13%
+Max. Depth      6
 ```
 
 ### List Only Duplicates
@@ -129,11 +129,11 @@ source-map@0.1.40         4
 amdefine@0.1.0            5
 core-util-is@1.0.1        5
 
-           SUMMARY
-    Total Packages 211
-   Unique Packages 175 83%
-Duplicate Packages 36  17%
-Max. Nesting Depth 21
+PKGCOUNT SUMMARY
+Total Pkgs      211
+Unique Pkgs     175  83%
+Duplicate Pkgs  36   17%
+Max. Depth      5
 ```
 
 ### List Only Summary
@@ -144,11 +144,11 @@ Max. Nesting Depth 21
 pkgcount --summary
 
 
-           SUMMARY
-    Total Packages 94
-   Unique Packages 86  91%
-Duplicate Packages 8   9%
-Max. Nesting Depth 8
+PKGCOUNT SUMMARY
+Total Pkgs      94
+Unique Pkgs     86   91%
+Duplicate Pkgs  8    9%
+Max. Depth      6
 ```
 
 ### JSON Output & No Color Highlighting
