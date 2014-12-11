@@ -92,7 +92,7 @@ module.exports.depth = depth
 
 function getDiskUsage(pkgPaths, options, fn) {
   options = options || {}
-  map(pkgPaths, 15, function(pkg, next) {
+  map(pkgPaths, 100, function(pkg, next) {
     var testPath = pkg.paths[0]
     if (!testPath) testPath = '.'
     diskUsage(testPath, function(err, size) {
@@ -108,7 +108,7 @@ function diskUsage(pkgRoot, fn) {
   du(pkgRoot, {
     disk: true,
     filter: function (f) {
-      return !(/^node_modules|\.git|^\.\/node_modules/.test(relative(pkgRoot, f)))
+      return !(/^node_modules|^\.git|^\.\/node_modules/.test(relative(pkgRoot, f)))
     }
   }, fn)
 }

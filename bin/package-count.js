@@ -3,6 +3,7 @@
 var columnify = require('columnify')
 var program = require('commander')
 var bytes = require('pretty-bytes')
+var du = require('du')
 
 var renderConsole = require('../lib/render-console')
 var renderJSON = require('../lib/render-json')
@@ -71,48 +72,50 @@ pkgcount(dir, program, function(err, allPkgs) {
     }
   ]
 
-  if (program.du) {
-    var totalSpace = getTotalSpace(allPkgs)
-    var wastedSpace = getWastedSpace(allPkgs)
-    summary.push({
-      key: 'totalSize',
-      title: 'Total Size',
-      percent: '',
-      value: "~" + bytes(totalSpace)
-    })
-    summary.push({
-      key: 'duplicateSize',
-      title: 'Duplicate Size',
-      percent: percent(wastedSpace/totalSpace),
-      value: "~" + bytes(wastedSpace)
-    })
-  }
+  getTotalSpace(dir, allPkgs, function(err, totalSpace) {
+    if (program.du) {
+      var wastedSpace = getWastedSpace(allPkgs)
+      summary.push({
+        key: 'totalSize',
+        title: 'Total Size',
+        percent: '',
+        value: "~" + bytes(totalSpace)
+      })
+      summary.push({
+        key: 'duplicateSize',
+        title: 'Duplicate Size',
+        percent: percent(wastedSpace/totalSpace),
+        value: "~" + bytes(wastedSpace)
+      })
+    }
 
-  if (program.json) {
-    if (program.summary) pkgs = summary
-    var result = program.color ? renderJSON.color(pkgs, program) : renderJSON(pkgs, program)
-    console.log(result)
-    return
-  } else {
-    if (!program.summary) {
-      var result = program.color ? renderConsole.color(pkgs, program) : renderConsole(pkgs, program)
+    if (program.json) {
+      if (program.summary) pkgs = summary
+      var result = program.color ? renderJSON.color(pkgs, program) : renderJSON(pkgs, program)
       console.log(result)
+      return
+    } else {
+      if (!program.summary) {
+        var result = program.color ? renderConsole.color(pkgs, program) : renderConsole(pkgs, program)
+        console.log(result)
+      }
     }
-  }
-  var summaryOutput = columnify(summary, {
-    minWidth: 3,
-    columnSplitter: '  ',
-    headingTransform: function(heading) {
-      if (heading === 'title') return ''
-      if (heading === 'value') return ''
-      if (heading === 'percent') return ''
-    },
-    columns: ['title', 'value', 'percent'],
-    config: {
-      title: {align: 'left'}
-    }
+    var summaryOutput = columnify(summary, {
+      minWidth: 3,
+      columnSplitter: '  ',
+      headingTransform: function(heading) {
+        if (heading === 'title') return ''
+        if (heading === 'value') return ''
+        if (heading === 'percent') return ''
+      },
+      columns: ['title', 'value', 'percent'],
+      config: {
+        title: {align: 'left'}
+      }
+    })
+    console.log("\nPKGCOUNT SUMMARY%s", summaryOutput)
+
   })
-  console.log("\nPKGCOUNT SUMMARY%s", summaryOutput)
 })
 
 function getTotal(pkgs) {
@@ -122,15 +125,15 @@ function getTotal(pkgs) {
 }
 
 function getWastedSpace(pkgs) {
-  return pkgs.reduce(function(total, pkg) {
-    return total + pkg.size * (pkg.duplicates - 1)
+  return pkgs.reduce(function(wasted, pkg) {
+    return wasted + pkg.size * (pkg.duplicates - 1)
   }, 0)
 }
 
-function getTotalSpace(pkgs) {
-  return pkgs.reduce(function(total, pkg) {
-    return total + pkg.totalSize
-  }, 0)
+function getTotalSpace(dir, pkgs, fn) {
+  du(dir + '/node_modules', {
+    disk: true
+  }, fn)
 }
 
 function duplicate(pkgs) {
