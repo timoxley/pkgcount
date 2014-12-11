@@ -1,6 +1,6 @@
 {
   "name": "pkgcount",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "List all installed packages & count duplicates.",
   "main": "index.js",
   "bin": {
