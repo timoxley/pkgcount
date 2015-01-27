@@ -25,6 +25,7 @@
     "commander": "^2.2.0",
     "defaults": "^1.0.0",
     "du": "^0.1.0",
+    "installed": "^2.0.1",
     "json-stringify-safe": "^5.0.0",
     "map-limit": "0.0.1",
     "pretty-bytes": "^1.0.1",

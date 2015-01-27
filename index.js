@@ -6,6 +6,7 @@ var defaults = require('defaults')
 var map = require('map-limit')
 var du = require('du')
 var path = require('path')
+var read = require('installed')
 
 var DEFAULTS = {
   depth: Infinity,
@@ -33,11 +34,9 @@ module.exports = function(dir, options, fn) {
 }
 
 function pkgcount(dir, options, fn) {
-  var pkgSet = {}
-  tree(dir, {depth: options.depth}, function (err, pkg) {
+  read(dir, {depth: options.depth}, function(err, deps) {
     if (err) return fn(err)
-    var deps = getDependencies(pkg, options.depth)
-    map(deps, 30, function(pkg, next) {
+    var pkgSet = deps.reduce(function(pkgSet, pkg) {
       var key = pkg.name + '@' + pkg.version
       pkgSet[key] = pkgSet[key] || {
         key: key,
@@ -47,45 +46,27 @@ function pkgcount(dir, options, fn) {
         paths: []
       }
       if (pkgSet[key].paths.indexOf(pkg.realPath) === -1) pkgSet[key].paths.push(pkg.realPath)
-      next()
-    }, function(err) {
-      if (err) return fn(err, [])
-      var pkgPaths = Object.keys(pkgSet).map(function(key) {
-        return pkgSet[key]
-      }).map(function(pkgPath) {
-        pkgPath.paths = pkgPath.paths.map(function(pth) {
-          return path.relative(dir, pth)
-        })
-        pkgPath.duplicates = pkgPath.paths.length
-        return pkgPath
+      return pkgSet
+    }, {})
+
+    var pkgPaths = Object.keys(pkgSet).map(function(key) {
+      return pkgSet[key]
+    }).map(function(pkgPath) {
+      pkgPath.paths = pkgPath.paths.map(function(pth) {
+        return path.relative(dir, pth)
       })
-      if (options.noSelf) pkgPaths = pkgPaths.filter(function(pkgPath) {
-        return pkgPath.duplicates
-      })
-      fn(null, pkgPaths)
+      pkgPath.duplicates = pkgPath.paths.length
+      return pkgPath
     })
+    if (options.noSelf) pkgPaths = pkgPaths.filter(function(pkgPath) {
+      return pkgPath.duplicates
+    })
+    fn(null, pkgPaths)
   })
 }
 
 function find(arr, fn) {
   return arr.filter(fn).pop()
-}
-
-function getDependencies(pkg, maxDepth, _results) {
-  _results = _results || []
-  if (!pkg || typeof pkg !== 'object') return _results
-  if (_results.indexOf(pkg) !== -1) return _results
-  if (pkg.depth > maxDepth) return _results
-  _results.push(pkg)
-  var dependencies = pkg.dependencies
-  if (!dependencies) return []
-  var keys = Object.keys(dependencies)
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i]
-    var dep = dependencies[key]
-    getDependencies(dep, maxDepth, _results)
-  }
-  return _results
 }
 
 module.exports.depth = depth
@@ -125,4 +106,21 @@ function sortBy(key) {
       return a[key] - b[key]
     }
   }
+}
+
+function assign(target, firstSource) {
+  if (target === undefined || target === null)
+    throw new TypeError("Cannot convert first argument to object");
+  var to = Object(target);
+  for (var i = 1; i < arguments.length; i++) {
+    var nextSource = arguments[i];
+    if (nextSource === undefined || nextSource === null) continue;
+    var keysArray = Object.keys(Object(nextSource));
+    for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+      var nextKey = keysArray[nextIndex];
+      var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+      if (desc !== undefined && desc.enumerable) to[nextKey] = nextSource[nextKey];
+    }
+  }
+  return to;
 }
