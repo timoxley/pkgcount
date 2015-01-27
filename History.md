@@ -1,3 +1,19 @@
+
+2.0.3 / 2015-01-27
+==================
+
+  * Prevent blowing stack by using http://npm.im/installed.
+
+2.0.2 / 2014-12-12
+==================
+
+  * Fix size calculations.
+
+2.0.1 / 2014-12-08
+==================
+
+ * Update Readme examples.
+
 2.0.0 / 2014-12-08
 ==================
 
