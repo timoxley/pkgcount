@@ -202,6 +202,11 @@ Duplicate Pkgs  0    0%
 Max. Depth      1
 ```
 
+## See Also
+
+* [timoxley/pkgfiles](https://github.com/timoxley/pkgfiles)
+* [timoxley/pkgrep](https://github.com/timoxley/pkgrep)
+
 ## License
 
 MIT
