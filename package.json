@@ -1,7 +1,7 @@
 {
   "name": "pkgcount",
-  "version": "2.0.3",
-  "description": "List all installed packages & count duplicates.",
+  "version": "2.0.4",
+  "description": "Count duplicates of each package in node_modules",
   "main": "index.js",
   "bin": {
     "pkgcount": "bin/package-count.js"
