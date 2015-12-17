@@ -28,7 +28,7 @@
     "installed": "^3.0.0",
     "json-stringify-safe": "^5.0.1",
     "map-limit": "0.0.1",
-    "pretty-bytes": "^2.0.1",
+    "pretty-bytes": "^3.0.0",
     "read-installed": "^4.0.2"
   },
   "devDependencies": {},
